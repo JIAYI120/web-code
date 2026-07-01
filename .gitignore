@@ -1,0 +1,33 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+build/
+
+# 日志
+logs/
+*.log
+
+# 环境变量（包含敏感信息）
+.env
+.env.local
+.env.production
+
+# 上传的文件
+uploads/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 调试文件
+*.pid
+*.seed
+*.coverage
