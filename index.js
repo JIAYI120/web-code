@@ -71,7 +71,12 @@ const port = process.env.PORT || 3000;
 // ========== CORS 配置 ==========
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['http://localhost:5173', 'http://localhost:3000'];
+  : [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'capacitor://localhost',
+      'http://localhost',
+    ];
 
 // ========== Socket.io 配置 ==========
 const io = new Server(httpServer, {
@@ -258,10 +263,11 @@ app.use(compression());
 // CORS 跨域配置
 app.use(cors({
   origin: (origin, callback) => {
+    // 允许无 origin 的请求（原生 App、Postman 等）
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('CORS 拒绝'));
+      callback(null, true);
     }
   },
   allowedHeaders: ['Content-Type', 'x-auth-token'],
